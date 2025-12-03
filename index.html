@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muistipeli</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <h1>Muistipeli</h1>
-    <div id="game-board"></div>
-    <script type="module" src="./js/game.js"></script>
+  <main>
+    <h1>Memory Game</h1>
+
+    <!-- Controls: select card count, restart, attempts and timer -->
+    <div class="controls">
+      <label for="card-count-select">Cards:</label>
+      <select id="card-count-select">
+        <option value="8">8</option>
+        <option value="12">12</option>
+        <option value="16" selected>16</option>
+      </select>
+
+      <button id="start-btn">Start</button>
+      <button id="restart-btn">Restart</button>
+
+      <div class="stats">
+        <span id="attempts">Attempts: 0</span>
+        <span id="timer">Time: 00:00</span>
+      </div>
+    </div>
+
+    <div id="game-board" aria-live="polite"></div>
+  </main>
+
+  <script type="module" src="./js/game.js"></script>
 </body>
 </html>

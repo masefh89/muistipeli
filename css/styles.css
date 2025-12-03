@@ -1,30 +1,93 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+/* Basic layout */
+:root{
+  --gap: 12px;
+  --max-width: 900px;
 }
 
-#game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-gap: 10px;
+*{box-sizing:border-box}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin:0;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  background:#f6f7fb;
+  color:#111;
+  min-height:100vh;
+}
+main{
+  width:100%;
+  max-width:var(--max-width);
+  margin:0 auto;
 }
 
-.card {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
+/* Header and controls */
+h1{
+  text-align:center;
+  margin-bottom:12px;
+}
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.controls select, .controls button{
+  padding:8px 10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  background:white;
+}
+.stats{
+  display:flex;
+  gap:12px;
+  align-items:center;
 }
 
-.card.flipped {
-    background-color: #fff;
+/* Game board responsive grid */
+#game-board{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap:var(--gap);
+  width:100%;
+  margin-top:10px;
+  align-items:stretch;
+}
+
+/* Card style */
+.card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#d7dde8;
+  border-radius:10px;
+  cursor:pointer;
+  user-select:none;
+  width:100%;
+  aspect-ratio:1/1; /* keep square */
+  font-size:clamp(18px, 3.6vw, 36px);
+  transition: transform 0.18s ease, background 0.18s ease;
+  box-shadow: 0 2px 6px rgba(15,15,20,0.06);
+}
+
+/* Flipped state */
+.card.flipped{
+  background:white;
+  transform: translateY(-4px);
+}
+
+/* Matched state */
+.card.matched{
+  background:#e6fff0;
+  transform: scale(0.98);
+  opacity:0.95;
+  pointer-events:none; /* disable clicks */
+}
+
+/* Small screens spacing */
+@media (max-width:480px){
+  .controls{gap:8px}
+  h1{font-size:20px}
 }

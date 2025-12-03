@@ -1,13 +1,11 @@
-export function createCardElement(card) {
-    const cardElement = document.createElement('div');
-    cardElement.classList.add('card');
-    cardElement.dataset.card = card;
-    return cardElement;
-}
+// card.js
+// Responsible for creating card DOM elements.
+// Flip logic is handled in board.js to keep game logic centralized.
 
-export function flipCard(cardElement, callback) {
-    if (cardElement.classList.contains('flipped')) return;
-    cardElement.classList.add('flipped');
-    cardElement.textContent = cardElement.dataset.card;
-    callback(cardElement);
+export function createCardElement(cardSymbol) {
+  const el = document.createElement('div');
+  el.classList.add('card');
+  el.dataset.card = cardSymbol;
+  // initially no text content so it's "face-down"
+  return el;
 }
